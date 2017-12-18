@@ -1,0 +1,27 @@
+{
+  "name": "npm-scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "all": "npm run watch-css & npm run watch-ejs & npm run watch-autoprefixer & npm run start",
+    "ejs": "ejs-cli --base-dir src/ejs/ '/**/**.ejs' --out ./public/",
+    "watch-ejs": "nodemon -e ejs -x \"npm run ejs \"",
+    "build-css": "node-sass --include-path scss src/scss/style.scss public/assets/css/style.css --output-style expanded --importer node_modules/node-sass-import --source-map public/assets/css/",
+    "watch-css": "nodemon -e scss -x \"npm run build-css \"",
+    "autoprefixer": "postcss --use autoprefixer -o public/assets/css/style.min.css public/assets/css/style.css",
+    "watch-autoprefixer": "nodemon -e scss -x \"npm run autoprefixer \"",
+    "start": "browser-sync start --server ./public/ --files='./public/**/*.html, ./public/assets/**/*'"
+  },
+  "author": "nagaoka",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "ejs-cli": "^2.0.0",
+    "node-sass": "^4.5.0",
+    "nodemon": "^1.11.0",
+    "autoprefixer": "^6.7.7",
+    "node-sass-import": "^1.1.1",
+    "postcss-cli": "^3.1.1"
+  }
+}
